@@ -1,17 +1,31 @@
 <template>
     <div>
-        <table class="table-auto">
+        <button type="button" class="rounded-full text-black bg-green-600 p-1 m-1 text-xs">ADD NEW +</button>
+        <table class="table-fixed">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>NAME</th>
+                    <th>SLUG</th>
+                    <th>SKU</th>
+                    <th>PRICE</th>
+                    <th>DISCOUNT</th>
+                    <th>TYPE</th>
+                    <th>ACTION</th>
                 </tr>
             </thead>
+            <tbody>
+                <tr v-for="product in products">
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.slug }}</td>
+                    <td>{{ product.sku }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.discount }}</td>
+                    <td>{{ product.type }}</td>
+                    <td>edit or delete</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </template>

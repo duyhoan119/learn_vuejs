@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function __construct(protected readonly ProductService $productService)
+    protected $productService;
+
+    public function __construct(ProductService $productService)
     {
         $this->productService = $productService;
     }
 
-    public function index(){
-        dd($this->productService);
+    public function index()
+    {
         return $this->productService->getAll();
     }
 
@@ -21,5 +23,4 @@ class ProductController extends Controller
     {
         return $this->productService->create($request);
     }
-
 }

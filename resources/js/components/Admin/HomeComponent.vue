@@ -13,9 +13,12 @@
             </ul>
         </div>
 
-        <div class="main mt-4">
-            <div class="row">
-                <div class="col-md-8 offset-2 text-center">
+        <div>
+            <div class="grid grid-cols-9">
+                <div class="col-span-1">
+
+                </div>
+                <div class="col-span-8">
                     <router-view></router-view>
                 </div>
             </div>
