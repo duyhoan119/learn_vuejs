@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('pr_variant_options', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pr_variant_id');
+            $table->foreign('pr_variant_id')->references('id')->on('pr_variants');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('avatar');
-            $table->string('display_name');
+            $table->string('sku');
+            $table->float('price',15,2);
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('pr_variant_options');
     }
 };
