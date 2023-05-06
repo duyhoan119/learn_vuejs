@@ -21,7 +21,15 @@ class ProductService
 
     public function create(Request $request)
     {
-        $insertData = $request->validate();
+        $insertData = $request->all();
         return $this->productRepository->create($insertData);
+    }
+
+    public function delete(int $id)
+    {
+        if ($this->productRepository->delete($id)) {
+            return true;
+        }
+        return false;
     }
 }

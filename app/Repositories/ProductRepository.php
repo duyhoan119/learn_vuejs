@@ -22,4 +22,15 @@ class ProductRepository
     {
         return $this->product->create($insertData);
     }
+
+    public function delete(int $id)
+    {
+        $productDelete = $this->product->find($id);
+        if ($productDelete) {
+            $productDelete->delete();
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

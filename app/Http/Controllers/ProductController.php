@@ -23,4 +23,12 @@ class ProductController extends Controller
     {
         return $this->productService->create($request);
     }
+
+    public function distroy(int $id)
+    {
+        if ($this->productService->delete($id)) {
+            return $this->index();
+        }
+        return false;
+    }
 }
