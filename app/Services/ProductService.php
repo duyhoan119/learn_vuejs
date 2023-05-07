@@ -25,6 +25,17 @@ class ProductService
         return $this->productRepository->create($insertData);
     }
 
+    public function update(int $id, Request $request)
+    {
+        $updateData = $request->all();
+        return $this->productRepository->update($id, $updateData);
+    }
+
+    public function findById(int $id)
+    {
+        return $this->productRepository->findById($id);
+    }
+
     public function delete(int $id)
     {
         if ($this->productRepository->delete($id)) {

@@ -23,6 +23,22 @@ class ProductRepository
         return $this->product->create($insertData);
     }
 
+    public function update(int $id, array $updateData)
+    {
+        $productUpdate = $this->product->find($id);
+        if ($productUpdate) {
+            $productUpdate->update($updateData);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function findById(int $id)
+    {
+        return $this->product->find($id);
+    }
+
     public function delete(int $id)
     {
         $productDelete = $this->product->find($id);

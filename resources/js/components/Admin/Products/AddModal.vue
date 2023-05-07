@@ -1,10 +1,12 @@
 <template>
-    <div>
-        <form action="">
-
+    <div class="w-full max-w-xs">
+        <h2 class="text-center font-bold">
+            Add new product
+        </h2>
+        <form action="" >
             <div class="my-2">
                 <label for="name">Name :</label>
-                <input id="name" type="text" v-model="name" class="rounded-full px-2 py-1 mx-2 bg-gray-200">
+                <input id="name" type="text" v-model="name" class=" rounded-full px-2 py-1 mx-2 bg-gray-200">
             </div>
             <div class="my-2">
                 <label for="meta_title">Meta title :</label>
