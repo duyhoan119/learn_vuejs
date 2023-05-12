@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="product in products"
-                        class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                        class="overflow-x-auto bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100 ">
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ product.id }}</td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ product.name }}</td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ product.slug }}</td>

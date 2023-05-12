@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,5 +25,14 @@ Route::prefix('product')->group(function () {
     Route::post('/', [ProductController::class, 'store']);
     Route::put('{id}', [ProductController::class, 'save']);
     Route::get('{id}', [ProductController::class, 'findById']);
+    Route::get('{id}/images', [ProductController::class, 'getImages']);
     Route::delete('{id}', [ProductController::class, 'distroy']);
+});
+
+Route::prefix('categories')->group(function () {
+    Route::get('/', [CategoryController::class, 'index']);
+    Route::post('/', [CategoryController::class, 'store']);
+    Route::put('{id}', [CategoryController::class, 'save']);
+    Route::get('{id}', [CategoryController::class, 'findById']);
+    Route::delete('{id}', [CategoryController::class, 'distroy']);
 });

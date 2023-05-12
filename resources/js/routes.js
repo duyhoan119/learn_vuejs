@@ -1,23 +1,33 @@
-import {createWebHistory , createRouter} from 'vue-router';
-import Home from "./components/Admin/HomeComponent.vue";
+import { createWebHistory, createRouter } from "vue-router";
 import ProductList from "./components/Admin/Products/ListComponent.vue";
+import Index from "./components/Client/Index.vue";
+import Products from "./components/Client/Product/Products.vue";
 
 const routes = [
     {
         path: "/",
-        component: Home,
-        name: Home,
+        component: Index,
+        name: Index, 
+    },
+    {
+        path: "/categories/:categoryId",
+        component: Products,
     },
     {
         path: "/products",
-        component: ProductList,
-        name: ProductList,
+        component: Products,
+        name: Products,
     },
+    // {
+    //     path: "/admin/product",
+    //     component: ProductList,
+    //     name: ProductList,
+    // },
 ];
 
 const router = createRouter({
-    history:createWebHistory(),
-    routes
+    history: createWebHistory(),
+    routes,
 });
 
 export default router;

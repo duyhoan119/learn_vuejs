@@ -3,14 +3,17 @@
 namespace App\Repositories;
 
 use App\Models\Product;
+use App\Models\ProductImage;
 
 class ProductRepository
 {
     protected $product;
+    protected $productImage;
 
-    public function __construct(Product $product)
+    public function __construct(Product $product, ProductImage $productImage)
     {
         $this->product = $product;
+        $this->productImage = $productImage;
     }
 
     public function getAll()
@@ -48,5 +51,10 @@ class ProductRepository
         } else {
             return false;
         }
+    }
+
+    public function getImages(int $id)
+    {
+        return $this->productImage->query()->where('product_id', $id)->get();
     }
 }

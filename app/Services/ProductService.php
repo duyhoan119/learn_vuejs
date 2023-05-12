@@ -43,4 +43,9 @@ class ProductService
         }
         return false;
     }
+
+    public function getImages(int $id)
+    {
+       return $this->productRepository->getImages($id);
+    }
 }

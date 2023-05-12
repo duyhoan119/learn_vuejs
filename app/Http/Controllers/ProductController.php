@@ -41,4 +41,9 @@ class ProductController extends Controller
         }
         return false;
     }
+
+    public function getImages(int $id)
+    {
+        return $this->productService->getImages($id);
+    }
 }
