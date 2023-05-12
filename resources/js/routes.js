@@ -18,11 +18,11 @@ const routes = [
         component: Products,
         name: Products,
     },
-    // {
-    //     path: "/admin/product",
-    //     component: ProductList,
-    //     name: ProductList,
-    // },
+    {
+        path: "/admin/product",
+        component: ProductList,
+        name: ProductList,
+    },
 ];
 
 const router = createRouter({

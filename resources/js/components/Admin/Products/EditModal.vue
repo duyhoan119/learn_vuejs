@@ -49,7 +49,7 @@ export default {
             this.$emit('close');
         },
         Save(id) {
-            var uri = 'api/product/' + id;
+            var uri = 'http://127.0.0.1:8000/api/product/' + id;
             axios.put(uri, this.editData).then(res => {
                 if (res.status === 200) {
                     alert("Update product success!");

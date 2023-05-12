@@ -21185,7 +21185,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     addNew: function addNew() {
       var _this = this;
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('api/product', {
+      axios__WEBPACK_IMPORTED_MODULE_0__["default"].post('http://127.0.0.1:8000/api/product', {
         name: this.name,
         meta_title: this.meta_title,
         slug: this.slug,
@@ -21234,7 +21234,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     Save: function Save(id) {
       var _this = this;
-      var uri = 'api/product/' + id;
+      var uri = 'http://127.0.0.1:8000/api/product/' + id;
       axios__WEBPACK_IMPORTED_MODULE_0__["default"].put(uri, this.editData).then(function (res) {
         if (res.status === 200) {
           alert("Update product success!");
@@ -21282,7 +21282,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     var _this = this;
-    axios__WEBPACK_IMPORTED_MODULE_2__["default"].get('api/product').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_2__["default"].get('http://127.0.0.1:8000/api/product').then(function (res) {
       _this.products = res.data;
       console.log(_this.products);
     });
@@ -21294,7 +21294,7 @@ __webpack_require__.r(__webpack_exports__);
       if (action === "add") {
         this.isAddModalVisible = true;
       } else {
-        axios__WEBPACK_IMPORTED_MODULE_2__["default"].get('api/product/' + id).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_2__["default"].get('http://127.0.0.1:8000/api/product/' + id).then(function (res) {
           _this2.editData = res.data;
         });
         this.isEditModalVisible = true;
@@ -21302,7 +21302,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     closeModal: function closeModal() {
       var _this3 = this;
-      axios__WEBPACK_IMPORTED_MODULE_2__["default"].get('api/product').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_2__["default"].get('http://127.0.0.1:8000/api/product').then(function (res) {
         _this3.products = res.data;
       });
       this.isAddModalVisible = false;
@@ -21310,7 +21310,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     Delete: function Delete(id) {
       var _this4 = this;
-      var uri = 'api/product/' + id;
+      var uri = 'http://127.0.0.1:8000/api/product/' + id;
       axios__WEBPACK_IMPORTED_MODULE_2__["default"]["delete"](uri).then(function (res) {
         if (res.status === 200) {
           _this4.products = res.data;
@@ -22151,14 +22151,11 @@ var routes = [{
   path: "/products",
   component: _components_Client_Product_Products_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
   name: _components_Client_Product_Products_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-}
-// {
-//     path: "/admin/product",
-//     component: ProductList,
-//     name: ProductList,
-// },
-];
-
+}, {
+  path: "/admin/product",
+  component: _components_Admin_Products_ListComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+  name: _components_Admin_Products_ListComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+}];
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.createWebHistory)(),
   routes: routes

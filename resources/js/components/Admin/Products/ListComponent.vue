@@ -65,7 +65,7 @@ export default {
         addModal,
     },
     created() {
-        axios.get('api/product').then(res => {
+        axios.get('http://127.0.0.1:8000/api/product').then(res => {
             this.products = res.data
             console.log(this.products);
         })
@@ -75,21 +75,21 @@ export default {
                 this.isAddModalVisible = true;
             }
             else {
-                axios.get('api/product/' + id).then(res => {
+                axios.get('http://127.0.0.1:8000/api/product/' + id).then(res => {
                     this.editData = res.data;
                 })
                 this.isEditModalVisible = true;
             }
         },
         closeModal() {
-            axios.get('api/product').then(res => {
+            axios.get('http://127.0.0.1:8000/api/product').then(res => {
                 this.products = res.data
             })
             this.isAddModalVisible = false;
             this.isEditModalVisible = false;
         },
         Delete(id) {
-            var uri = 'api/product/' + id;
+            var uri = 'http://127.0.0.1:8000/api/product/' + id;
             axios.delete(uri).then(res => {
                 if (res.status === 200) {
                     this.products = res.data;

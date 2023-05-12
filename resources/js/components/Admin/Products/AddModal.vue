@@ -59,7 +59,7 @@ export default {
             this.$emit('close')
         },
         addNew() {
-            axios.post('api/product', {
+            axios.post('http://127.0.0.1:8000/api/product', {
                 name: this.name,
                 meta_title: this.meta_title,
                 slug: this.slug,
