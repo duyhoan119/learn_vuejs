@@ -29,7 +29,7 @@
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ product.type }}</td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             <button class="bg-yellow-400 text-black rounded-full px-2 py-1 mx-1"
-                                v-on:click="showModal('edit', product.id)">EDIT</button>
+                                v-on:click="showModal('edit', product)">EDIT</button>
                             <button class="bg-red-400 text-black rounded-full px-2 py-1 mx-1"
                                 v-on:click="Delete(product.id)">DELETE</button>
                         </td>
@@ -48,6 +48,7 @@
 import axios from 'axios';
 import editModal from './EditModal.vue';
 import addModal from './AddModal.vue';
+import { toast } from 'vue3-toastify';
 export default {
     name: 'ProductList',
     data() {
@@ -67,37 +68,33 @@ export default {
     created() {
         axios.get('http://127.0.0.1:8000/api/product').then(res => {
             this.products = res.data
-            console.log(this.products);
         })
     }, methods: {
-        showModal(action, id = 0) {
+        showModal(action, product = {}) {
             if (action === "add") {
                 this.isAddModalVisible = true;
             }
             else {
-                axios.get('http://127.0.0.1:8000/api/product/' + id).then(res => {
-                    this.editData = res.data;
-                })
+                this.editData = product
                 this.isEditModalVisible = true;
             }
         },
         closeModal() {
-            axios.get('http://127.0.0.1:8000/api/product').then(res => {
+            axios.get('/api/product').then(res => {
                 this.products = res.data
             })
             this.isAddModalVisible = false;
             this.isEditModalVisible = false;
         },
         Delete(id) {
-            var uri = 'http://127.0.0.1:8000/api/product/' + id;
+            var uri = '/api/product/' + id;
             axios.delete(uri).then(res => {
-                if (res.status === 200) {
-                    this.products = res.data;
-                    alert("delete product success");
-                }
-                else {
-                    alert("delete product false");
-                }
+                this.products = res.data;
+                toast.success('delete product success!', {
+                    autoClose: 1000
+                })
+            }).catch((error) => {
+                toast.error('delete product false!');
             })
         }
     }

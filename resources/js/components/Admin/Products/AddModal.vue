@@ -3,7 +3,7 @@
         <h2 class="text-center font-bold">
             Add new product
         </h2>
-        <form action="" >
+        <form action="">
             <div class="my-2">
                 <label for="name">Name :</label>
                 <input id="name" type="text" v-model="name" class=" rounded-full px-2 py-1 mx-2 bg-gray-200">
@@ -40,6 +40,8 @@
 </template>
 <script>
 import axios from 'axios';
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 export default {
     name: 'addModal',
@@ -59,7 +61,7 @@ export default {
             this.$emit('close')
         },
         addNew() {
-            axios.post('http://127.0.0.1:8000/api/product', {
+            axios.post('/api/product', {
                 name: this.name,
                 meta_title: this.meta_title,
                 slug: this.slug,
@@ -69,12 +71,17 @@ export default {
                 type: this.type
             }).then(res => {
                 if (res.status === 201) {
-                    alert('add new product success');
+                    toast.success('Add new product success', {
+                        autoClose: 1000
+                    });
                     this.$emit('close');
-                } else {
-                    alert('add new product fales');
                 }
+            }).catch((error) => {
+                toast.error('Add new product fail', {
+                    autoClose: 1000
+                });
             })
+
         }
     }
 }

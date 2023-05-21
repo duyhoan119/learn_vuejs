@@ -27,6 +27,9 @@ Route::prefix('product')->group(function () {
     Route::get('{id}', [ProductController::class, 'findById']);
     Route::get('{id}/images', [ProductController::class, 'getImages']);
     Route::delete('{id}', [ProductController::class, 'distroy']);
+    Route::prefix('{id}/variant')->group(function () {
+        // Route::get('/',[]);
+    });
 });
 
 Route::prefix('categories')->group(function () {

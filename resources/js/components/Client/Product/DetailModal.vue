@@ -17,7 +17,9 @@
         <div class="col-span-2 bg-slate-50 m-1 rounded-lg">
             <div>
                 <h1>{{ productDetail.name }}</h1>
-                <h2></h2>
+                <div v-show="isProductVariant">
+
+                </div>
             </div>
             <div>
                 <button type="button" class="bg-red-600 text-black font-bold rounded-full px-2 py-1 text-xs mx-2">Add to
@@ -38,13 +40,19 @@ export default {
     },
     data() {
         return {
-            images: []
+            images: [],
+            ProductVariant: [],
+            isProductVariant: false
         }
     },
     mounted() {
         var uri = "api/product/1/images";
+        var uriProductVariant = "api/product/1/variant";
         axios.get(uri).then(res => {
             this.images = res.data
+            axios.get(uriProductVariant).then(res => {
+                this.ProductVariant = res.data
+            })
         })
     },
     methods: {

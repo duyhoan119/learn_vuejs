@@ -34,6 +34,7 @@
 </template>
 <script>
 import axios from 'axios';
+import { toast } from 'vue3-toastify';
 
 export default {
     name: 'editModal',
@@ -49,14 +50,17 @@ export default {
             this.$emit('close');
         },
         Save(id) {
-            var uri = 'http://127.0.0.1:8000/api/product/' + id;
+            var uri = '/api/product/' + id;
             axios.put(uri, this.editData).then(res => {
-                if (res.status === 200) {
-                    alert("Update product success!");
-                    this.$emit('close');
-                } else {
-                    alert("Update product fales!");
-                }
+                toast.success('Update product success!', {
+                    autoClose: 1000
+                })
+                this.$emit('close');
+
+            }).catch((error) => {
+                toast.error('Update product fales!', {
+                    autoClose: 1000
+                })
             })
         }
     }

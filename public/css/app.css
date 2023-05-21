@@ -558,9 +558,6 @@ video {
 .h-4\/5 {
   height: 80%;
 }
-.h-4 {
-  height: 1rem;
-}
 .h-full {
   height: 100%;
 }
@@ -765,12 +762,6 @@ video {
 }
 .hover\:h-1\/3:hover {
   height: 33.333333%;
-}
-.hover\:h-full:hover {
-  height: 100%;
-}
-.hover\:w-full:hover {
-  width: 100%;
 }
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
