@@ -2,20 +2,20 @@
 
 namespace App\Repositories;
 
-use App\Models\PrVariants;
+use App\Models\PrVariant;
 
 class ProductVariantRepository
 {
     protected $ProductVariant;
-    
-    public function __construct(PrVariants $ProductVariant)
+
+    public function __construct(PrVariant $ProductVariant)
     {
         $this->ProductVariant = $ProductVariant;
     }
 
-    public function getAll()
+    public function findByProductId(int $id)
     {
-        return $this->ProductVariant->query();
+        return $this->ProductVariant->query()->where('product_id', $id)->with('prVariantOption')->get();
     }
 
     public function create(array $insertData)

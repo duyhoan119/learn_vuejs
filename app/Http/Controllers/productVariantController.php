@@ -2,9 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\ProductVariantService;
 
-class productVariantController extends Controller
+class ProductVariantController extends Controller
 {
-    //
+    protected $productVariantService;
+
+    public function __construct(ProductVariantService $productVariantService)
+    {
+        $this->productVariantService = $productVariantService;
+    }
+
+    public function findByProductId(int $id)
+    {
+        return $this->productVariantService->findByProductId($id);
+    }
 }

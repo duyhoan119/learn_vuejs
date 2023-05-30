@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductVariantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::prefix('product')->group(function () {
     Route::get('{id}/images', [ProductController::class, 'getImages']);
     Route::delete('{id}', [ProductController::class, 'distroy']);
     Route::prefix('{id}/variant')->group(function () {
-        // Route::get('/',[]);
+        Route::get('/', [ProductVariantController::class, 'findByProductId']);
     });
 });
 

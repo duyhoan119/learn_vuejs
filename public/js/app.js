@@ -21385,19 +21385,15 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       images: [],
-      ProductVariant: [],
+      formData: [],
       isProductVariant: false
     };
   },
   mounted: function mounted() {
     var _this = this;
     var uri = "api/product/1/images";
-    var uriProductVariant = "api/product/1/variant";
     axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(uri).then(function (res) {
       _this.images = res.data;
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(uriProductVariant).then(function (res) {
-        _this.ProductVariant = res.data;
-      });
     });
   },
   methods: {
@@ -21406,6 +21402,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     convertImage: function convertImage(href) {
       document.getElementById("show").src = href;
+    },
+    addToCart: function addToCart(id) {
+      this.formData['product_id'] = id;
+      console.log(this.formData);
     }
   }
 });
@@ -21446,6 +21446,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   created: function created() {
     var _this = this;
     axios__WEBPACK_IMPORTED_MODULE_1__["default"].get("http://127.0.0.1:8000/api/product").then(function (res) {
+      console.log(res.data);
       _this.products = res.data;
     });
   },
@@ -21924,11 +21925,18 @@ var _hoisted_5 = ["onClick", "src"];
 var _hoisted_6 = {
   "class": "col-span-2 bg-slate-50 m-1 rounded-lg"
 };
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "button",
-  "class": "bg-red-600 text-black font-bold rounded-full px-2 py-1 text-xs mx-2"
-}, "Add to cart", -1 /* HOISTED */);
-
+var _hoisted_7 = {
+  "class": "m-1 p-1"
+};
+var _hoisted_8 = {
+  id: "addCartData",
+  action: "",
+  "class": "flex"
+};
+var _hoisted_9 = {
+  "class": "flex m-1 p-1"
+};
+var _hoisted_10 = ["onUpdate:modelValue", "value"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.images, function (image) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
@@ -21939,8 +21947,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       src: image.href,
       alt: ""
     }, null, 8 /* PROPS */, _hoisted_5);
-  }), 256 /* UNKEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.productDetail.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isProductVariant]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[0] || (_cache[0] = function () {
+  }), 256 /* UNKEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.productDetail.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.productDetail.product_variant, function (productVariant) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(productVariant.name), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(productVariant.pr_variant_option, function (variantOption) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        "onUpdate:modelValue": function onUpdateModelValue($event) {
+          return $data.formData[productVariant.name] = $event;
+        },
+        type: "radio",
+        value: variantOption.id
+      }, null, 8 /* PROPS */, _hoisted_10), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $data.formData[productVariant.name]]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(variantOption.name), 1 /* TEXT */)]);
+    }), 256 /* UNKEYED_FRAGMENT */))])]);
+  }), 256 /* UNKEYED_FRAGMENT */))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    type: "button",
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $options.addToCart($props.productDetail.id);
+    }),
+    "class": "bg-red-600 text-black font-bold rounded-full px-2 py-1 text-xs mx-2"
+  }, "Add to cart"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[1] || (_cache[1] = function () {
       return $options.close && $options.close.apply($options, arguments);
     }),
     "class": "bg-orange-400 text-black rounded-full text-xs font-bold px-2 py-1 mx-2"

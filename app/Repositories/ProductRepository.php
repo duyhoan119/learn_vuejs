@@ -18,7 +18,7 @@ class ProductRepository
 
     public function getAll()
     {
-        return $this->product->all();
+        return $this->product->query()->with(['productVariant','productVariant.prVariantOption'])->get();
     }
 
     public function create(array $insertData)

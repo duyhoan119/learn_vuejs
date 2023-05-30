@@ -17,12 +17,21 @@
         <div class="col-span-2 bg-slate-50 m-1 rounded-lg">
             <div>
                 <h1>{{ productDetail.name }}</h1>
-                <div v-show="isProductVariant">
-
+                <div>
+                    <div v-for="productVariant in productDetail.product_variant" class="m-1 p-1 ">
+                        <h3>{{ productVariant.name }}</h3>
+                        <form id="addCartData" action="" class="flex">
+                            <div class="flex m-1 p-1" v-for="variantOption in productVariant.pr_variant_option">
+                                <input v-model="formData[productVariant.name]" type="radio" :value="variantOption.id">
+                                <h4>{{ variantOption.name }}</h4>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div>
-                <button type="button" class="bg-red-600 text-black font-bold rounded-full px-2 py-1 text-xs mx-2">Add to
+                <button type="button" v-on:click="addToCart(productDetail.id)"
+                    class="bg-red-600 text-black font-bold rounded-full px-2 py-1 text-xs mx-2">Add to
                     cart</button>
                 <button v-on:click="close"
                     class="bg-orange-400 text-black rounded-full text-xs font-bold px-2 py-1 mx-2">close</button>
@@ -41,18 +50,14 @@ export default {
     data() {
         return {
             images: [],
-            ProductVariant: [],
+            formData: [],
             isProductVariant: false
         }
     },
     mounted() {
         var uri = "api/product/1/images";
-        var uriProductVariant = "api/product/1/variant";
         axios.get(uri).then(res => {
             this.images = res.data
-            axios.get(uriProductVariant).then(res => {
-                this.ProductVariant = res.data
-            })
         })
     },
     methods: {
@@ -61,6 +66,10 @@ export default {
         },
         convertImage(href) {
             document.getElementById("show").src = href;
+        },
+        addToCart(id) {
+            this.formData['product_id'] = id;
+            console.log(this.formData);
         }
     }
 }
