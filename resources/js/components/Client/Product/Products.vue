@@ -13,7 +13,7 @@
                     class="bg-red-600 text-black font-bold rounded-full px-2 py-1 text-xs hover:text-xl">Add to
                     cart</button>
             </div>
-        </div>
+        </div>  
         <DetailModal v-bind:productDetail="productDetail" v-show="isDetailModalVisible" @close="close"></DetailModal>
     </div>
 </template>
@@ -34,7 +34,6 @@ export default {
     },
     created() {
         axios.get("http://127.0.0.1:8000/api/product").then(res => {
-            console.log(res.data);
             this.products = res.data;
         });
     },

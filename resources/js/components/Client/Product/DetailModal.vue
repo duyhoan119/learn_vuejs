@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div>
-                <button type="button" v-on:click="addToCart(productDetail.id)"
+                <button type="button" v-on:click="addToCart(productDetail)"
                     class="bg-red-600 text-black font-bold rounded-full px-2 py-1 text-xs mx-2">Add to
                     cart</button>
                 <button v-on:click="close"
@@ -41,6 +41,7 @@
 </template>
 <script>
 import axios from 'axios';
+import { toast } from 'vue3-toastify';
 
 export default {
     name: "detailModal",
@@ -50,8 +51,9 @@ export default {
     data() {
         return {
             images: [],
-            formData: [],
-            isProductVariant: false
+            formData: {},
+            isProductVariant: false,
+            addCartData: []
         }
     },
     mounted() {
@@ -67,9 +69,14 @@ export default {
         convertImage(href) {
             document.getElementById("show").src = href;
         },
-        addToCart(id) {
-            this.formData['product_id'] = id;
-            console.log(this.formData);
+        addToCart(product) {
+            this.addCartData = product;
+            this.addCartData['product_variant'] = this.formData;
+            axios.post('api/orders', this.addCartData).then(res => {
+                toast.success('Thêm giỏ hàng thành công!');
+            }).catch(erorr => {
+                toast.error('Thêm giỏ hàng không thành công!');
+            })
         }
     }
 }

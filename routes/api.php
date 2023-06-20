@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductVariantController;
 use Illuminate\Http\Request;
@@ -39,4 +40,9 @@ Route::prefix('categories')->group(function () {
     Route::put('{id}', [CategoryController::class, 'save']);
     Route::get('{id}', [CategoryController::class, 'findById']);
     Route::delete('{id}', [CategoryController::class, 'distroy']);
+});
+
+Route::prefix('orders')->group(function () {
+    Route::get('/', [OrderController::class, 'index']);
+    Route::post('/', [OrderController::class, 'store']);
 });

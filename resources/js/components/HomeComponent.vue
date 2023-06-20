@@ -8,6 +8,7 @@
                         class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500">
                         Home
                     </router-link>
+                    <h3 v-on:click="showModal" class="text-white">Cart</h3>
                 </li>
             </ul>
         </div>
@@ -16,7 +17,8 @@
                 <div class="col-span-1">
                     <Navigation></Navigation>
                 </div>
-                <div class="col-span-8">
+                <div class="col-span-8 static">
+                    <CartModal v-show="isCartModalVisible" @close="close"></CartModal>
                     <router-view></router-view>
                 </div>
             </div>
@@ -26,11 +28,26 @@
 
 <script>
 import Navigation from './Client/layout/Navigation.vue';
+import CartModal from './Client/Cart/CartModal.vue';
 export default {
     name: "Home",
     components() {
         Navigation;
     },
-    components: { Navigation }
+    components: {
+        Navigation,
+        CartModal
+    }, data() {
+        return {
+            isCartModalVisible: false
+        }
+    }, methods: {
+        close() {
+            this.isCartModalVisible = false
+        },
+        showModal() {
+            this.isCartModalVisible = true
+        }
+    }
 }
 </script>
