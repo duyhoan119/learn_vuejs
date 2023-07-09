@@ -7,13 +7,14 @@
                     alt="">
             </div>
             <div class="text-center">
-                <span>{{ product.price }}</span>
+                <span v-if="product.discount != null">{{ product.discount }}</span>
+                <span v-else>{{ product.price }}</span>
                 <h3>{{ product.name }}</h3>
                 <button type="button"
                     class="bg-red-600 text-black font-bold rounded-full px-2 py-1 text-xs hover:text-xl">Add to
                     cart</button>
             </div>
-        </div>  
+        </div>
         <DetailModal v-bind:productDetail="productDetail" v-show="isDetailModalVisible" @close="close"></DetailModal>
     </div>
 </template>

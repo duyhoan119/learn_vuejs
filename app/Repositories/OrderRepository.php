@@ -15,7 +15,7 @@ class OrderRepository
 
     public function getCart()
     {
-        return $this->order->with('orderItem', 'orderItem.product')->where('status', 1)->first();
+        return $this->order->with('orderItem', 'orderItem.product')->where('status', 0)->first();
     }
 
     public function create(array $insertData)
