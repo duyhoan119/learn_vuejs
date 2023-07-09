@@ -11,6 +11,7 @@
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Loại</th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">GIá</th>
                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Số lượng</th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left"></th>
 
                             </tr>
                         </thead>
@@ -25,6 +26,9 @@
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ item.price }}
                                 </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ item.quantity }}
+                                </td>
+                                <td>
+                                    <button v-on:click="deleteCart(item.id)" class="text-red-700 font-bold">X</button>
                                 </td>
 
                             </tr>
@@ -42,6 +46,7 @@
 </template>
 <script>
 import axios from 'axios';
+import { toast } from 'vue3-toastify';
 
 export default {
     name: 'cartModal',
@@ -55,6 +60,12 @@ export default {
         },
         exportProductVariant(produtcVariant) {
 
+        },
+        deleteCart(id) {
+            axios.delete('api/orders/item/' + id).then(res => {
+                console.log(res);
+                toast.success('xoa san pham thanh cong');
+            })
         }
     }, mounted() {
         axios.get('api/orders').then(res => {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderItemcontroller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductVariantController;
 use Illuminate\Http\Request;
@@ -45,4 +46,5 @@ Route::prefix('categories')->group(function () {
 Route::prefix('orders')->group(function () {
     Route::get('/', [OrderController::class, 'index']);
     Route::post('/', [OrderController::class, 'store']);
+    Route::delete('/item/{id}', [OrderItemcontroller::class, 'destroy']);
 });

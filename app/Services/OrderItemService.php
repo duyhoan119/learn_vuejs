@@ -18,4 +18,9 @@ class OrderItemService
     {
         return $this->orderItemRepository->create($insertData);
     }
+
+    public function delete(int $id)
+    {
+        return $this->orderItemRepository->delete($id);
+    }
 }
