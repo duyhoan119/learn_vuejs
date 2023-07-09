@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import ProductList from "./components/Admin/Products/ListComponent.vue";
 import Index from "./components/Client/Index.vue";
 import Products from "./components/Client/Product/Products.vue";
-
+import CategoryList from "./components/Admin/Categories/List.vue";
 const routes = [
     {
         path: "/",
@@ -22,6 +22,11 @@ const routes = [
         path: "/admin/product",
         component: ProductList,
         name: ProductList,
+    },
+    {
+        path: "/admin/category",
+        component: CategoryList,
+        name: CategoryList,
     },
 ];
 
